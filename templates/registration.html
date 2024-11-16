@@ -1,0 +1,32 @@
+{{ define "content" }}
+<div class="h-screen">
+    <div class="h-3/4 flex flex-col justify-center items-center w-full">
+        <form action="/register" method="post" class="w-1/3 flex flex-col bg-white rounded-xl p-8 gap-3">
+            <h1 class="text-xl font-medium">Регистрация</h1>
+            {{ if .Error }}
+                <p class="text-red-600 font-semibold text-sm"> {{ .Error }} </p>
+            {{ end }}
+
+            <p class="tracking-wide text-base">Имя</p>
+            <input type="text" id="name" name="name" class="w-full h-8 px-1 formcolor rounded-md text-sm" required>
+
+            <p class="tracking-wide text-base">Фамилия</p>
+            <input type="text" id="surname" name="surname" class="w-full h-8 px-1 formcolor rounded-md text-sm" required>
+
+            <p class="tracking-wide text-base">Почта</p>
+            <input type="email" id="email" name="email" class="w-full h-8 px-1 formcolor rounded-md text-sm" required>
+
+            <p class="tracking-wide text-base">Пароль</p>
+            <input type="password" id="password" name="password" class="w-full h-8 px-1 formcolor rounded-md text-sm" required>
+
+            <button type="submit" class="bg-gray-600 text-white rounded-md text-lg
+            w-full flex justify-center items-center py-2 tracking-wider hover:bg-gray-700 shadow-md">Регистрация</button>
+
+            <div class="flex flex-row text-sm">
+                <p class="mr-2">Уже есть аккаунт?</p>
+                <a href="/login" class="underline">Войти</a>
+            </div>
+        </form>
+    </div>
+</div>
+{{ end }}

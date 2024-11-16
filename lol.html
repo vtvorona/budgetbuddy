@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Временная шкала философов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .timeline {
+            width: 600px;
+            padding: 10px;
+            border-left: 3px solid #8B4513; /* Коричневая полоса */
+            position: relative;
+        }
+        .timeline-entry {
+            margin: 20px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        .timeline-entry::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: #8B4513; /* Коричневый цвет точек */
+            border-radius: 50%;
+            position: absolute;
+            left: -19px;
+            top: 0;
+        }
+        .period {
+            font-weight: bold;
+            color: #4caf50; /* Зеленый цвет для периодов */
+            margin-top: 10px;
+        }
+        .philosopher {
+            font-weight: bold;
+            color: #4caf50; /* Зеленый цвет для имен философов */
+        }
+        .idea {
+            font-size: 0.9em;
+            color: #555;
+        }
+        .details {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="timeline">
+    <div class="timeline-entry">
+        <div class="period">Средние века</div>
+        <div class="philosopher">Аврелий Августин (354–430)</div>
+        <div class="idea">«Предопределение и истина в Боге»</div>
+        <div class="details">
+            Августин считал, что только через веру и божественное откровение можно постичь истину. Он разработал учение о предопределении, согласно которому спасение или гибель человека зависят от Божьей воли.
+        </div>
+    </div>
+
+    <div class="timeline-entry">
+        <div class="philosopher">Ансельм Кентерберийский (1033–1109)</div>
+        <div class="idea">Онтологическое доказательство существования Бога</div>
+        <div class="details">
+            Ансельм предложил аргумент, что Бог — это сущность, превосходящая все мыслимое, и поэтому он должен существовать, так как несуществующее не может быть абсолютным.
+        </div>
+    </div>
+
+    <div class="timeline-entry">
+        <div class="philosopher">Фома Аквинский (1225–1274)</div>
+        <div class="idea">«Пять путей» для доказательства бытия Бога</div>
+        <div class="details">
+            Аквинский выделил пять рациональных доказательств существования Бога, включая аргументы от движения, причинности и целевой направленности природы. Его идеи стали основой схоластической философии.
+        </div>
+    </div>
+
+    <div class="timeline-entry">
+        <div class="period">Эпоха Возрождения</div>
+        <div class="philosopher">Никколо Макиавелли (1469–1527)</div>
+        <div class="idea">Политическая философия, «цель оправдывает средства»</div>
+        <div class="details">
+            Макиавелли исследовал политическую власть, утверждая, что правители могут использовать любые средства для достижения своих целей. Его книга «Государь» описывает искусство управления и влияние власти.
+        </div>
+    </div>
+
+    <div class="timeline-entry">
+        <div class="philosopher">Фрэнсис Бэкон (1561–1626)</div>
+        <div class="idea">Эмпиризм и научный метод</div>
+        <div class="details">
+            Бэкон заложил основы эмпиризма, подчеркивая значение опыта и наблюдения для познания. Он предложил научный метод как способ открытия истины.
+        </div>
+    </div>
+
+    <div class="timeline-entry">
+        <div class="philosopher">Рене Декарт (1596–1650)</div>
+        <div class="idea">«Я мыслю, следовательно, я существую»</div>
+        <div class="details">
+            Декарт разработал методологический скептицизм и основы рационализма. Его идея «Cogito, ergo sum» стала основой современной философии, ставя разум как основу знания.
+        </div>
+    </div>
+
+    <div class="timeline-entry">
+        <div class="period">Просвещение</div>
+        <div class="philosopher">Томас Гоббс (1588–1679)</div>
+        <div class="idea">Теория общественного договора</div>
+        <div class="details">
+            Гоббс утверждал, что люди заключают общественный договор, чтобы избежать «войны всех против всех». Он видел сильное государство, или Левиафана, как способ защиты от анархии.
+        </div>
+    </div>
+
+    <div class="timeline-entry">
+        <div class="philosopher">Джон Локк (1632–1704)</div>
+        <div class="idea">Права на жизнь, свободу и собственность</div>
+        <div class="details">
+            Локк развил теорию естественных прав, утверждая, что люди имеют врожденные права, которые правительство должно защищать. Его идеи стали основой современной демократии.
+        </div>
+    </div>
+
+    <div class="timeline-entry">
+        <div class="philosopher">Барух Спиноза (1632–1677)</div>
+        <div class="idea">Пантеизм, Бог и природа — одно</div>
+        <div class="details">
+            Спиноза утверждал, что Бог и природа — это одно и то же, а все сущее является проявлением Бога. Его философия была революционной и отвергла традиционные религиозные догмы.
+        </div>
+    </div>
+
+    <div class="timeline-entry">
+        <div class="period">Немецкая классическая философия</div>
+        <div class="philosopher">Иммануил Кант (1724–1804)</div>
+        <div class="idea">Категории разума, автономия морали</div>
+        <div class="details">
+            Кант ввел идею, что знание возникает из синтеза чувственного опыта и понятий разума. Он также утверждал, что мораль основывается на автономии воли, а не на внешних авторитетах.
+        </div>
+    </div>
+
+    <div class="timeline-entry">
+        <div class="philosopher">Георг Гегель (1770–1831)</div>
+        <div class="idea">Диалектика, абсолютный дух</div>
+        <div class="details">
+            Гегель разработал диалектический метод, согласно которому все идеи развиваются через противоположные идеи. Он также исследовал понятие абсолютного духа, соединяющего всех людей.
+        </div>
+    </div>
+
+    <div class="timeline-entry">
+        <div class="period">Современная философия</div>
+        <div class="philosopher">Карл Маркс (1818–1883)</div>
+        <div class="idea">Материалистическая концепция истории</div>
+        <div class="details">
+            Маркс утверждал, что история движется классовой борьбой. Его теория критиковала капитализм и предсказывала переход к социализму через революцию рабочего класса.
+        </div>
+    </div>
+
+    <div class="timeline-entry">
+        <div class="philosopher">Фридрих Ницше (1844–1900)</div>
+        <div class="idea">Воля к власти, сверхчеловек</div>
+        <div class="details">
+            Ницше ввел понятие «сверхчеловека» и идею воли к власти как движущей силы человека. Он критиковал традиционную мораль и провозгласил «смерть Бога».
+        </div>
+    </div>
+
+    <div class="timeline-entry">
+        <div class="philosopher">Зигмунд Фрейд (1856–1939)</div>
+        <div class="idea">Бессознательное, психоанализ</div>
+        <div class="details">
+            Фрейд основал психоанализ и разработал концепцию бессознательного, считая, что скрытые желания и страхи влияют на поведение человека.
+        </div>
+    </div>
+
+    <div class="timeline-entry">
+        <div class="philosopher">Людвиг Витгенштейн (1889–1951)</div>
+        <div class="idea">Язык и логика</div>
+        <div class="details">
+            Витгенштейн исследовал природу языка и логики, утверждая, что границы языка определяют границы нашего мира и мышления.
+        </div>
+    </div>
+
+    <div class="timeline-entry">
+        <div class="philosopher">Жан-Поль Сартр (1905–1980)</div>
+        <div class="idea">Экзистенциализм, свобода и ответственность</div>
+        <div class="details">
+            Сартр развивал идею экзистенциализма, утверждая, что человек свободен и несет ответственность за свои поступки, формируя свою сущность через действия.
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

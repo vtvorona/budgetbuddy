@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.headerbg {
+    background-color: #D0D8E6;
+}
+
+.buttonbg {
+    background-color: #263B6A;
+}
+
+.textcolor {
+    color: #0F172A;
+}
+
+.formcolor {
+    background-color: #E9ECF4;
+}
+
+.pagebg {
+    background-color: #F0F4F8;
+}
+
+.custom-blur {
+    filter: blur(4px); /* 4px аналогично blur-md */
+}

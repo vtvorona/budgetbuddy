@@ -1,0 +1,17 @@
+{{ define "content" }}
+<div class="h-screen flex flex-col justify-center items-center bg-green-200">
+    <div class="w-3/4 md:w-1/2 lg:w-1/3 bg-white rounded-xl shadow-lg p-8 flex flex-col items-center">
+        <h1 class="text-4xl font-bold text-green-800">Регистрация успешна!</h1>
+        <p class="mt-4 text-lg text-gray-700 text-center">
+            Спасибо за регистрацию! Вы успешно создали учетную запись в Budget Buddy.
+        </p>
+        <p class="mt-4 text-lg text-gray-700 text-center">
+            Теперь вы можете начать отслеживать свои расходы и управлять финансами!
+        </p>
+        <a href="/login" class="mt-6 bg-sky-800 text-white rounded-md text-lg px-6 py-3 hover:bg-sky-950 transition duration-200">
+            Войти
+        </a>
+        <a href="/" class="mt-2 text-gray-600 hover:underline">Вернуться на главную</a>
+    </div>
+</div>
+{{ end }}

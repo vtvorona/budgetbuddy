@@ -1,0 +1,7 @@
+{{template "header" .}}
+<div class="flex flex-col">
+    <main class="min-h-screen">
+        {{block "content" .}}{{end}}
+    </main>
+    {{template "footer" .}}
+</div>

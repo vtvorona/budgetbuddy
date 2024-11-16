@@ -1,0 +1,120 @@
+{{ define "content" }}
+
+<div id="modal" class="h-3/5 z-10 fixed w-full hidden justify-center items-center">
+    <div class="w-1/3 h-min p-10 bg-white rounded-lg shadow-md relative">
+        <button onclick="closeToggleModal()" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700">&times;</button>
+
+        <h2 class="text-lg font-semibold mb-4">Добавить расход</h2>
+
+        <form action="/expense/add">
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700" for="title">Название</label>
+                <input type="text" id="title"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Введите название">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700" for="category">Категория</label>
+                <input type="text" id="category"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Введите категорию">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700" for="cost">Стоимость</label>
+                <input type="number" id="cost"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Введите стоимость">
+            </div>
+
+            <button type="submit"
+                class="w-8 h-8 flex items-center justify-center bg-gray-700 text-white rounded-full mt-4 ml-auto hover:bg-gray-800 focus:outline-none">
+                ✓
+            </button>
+        </form>
+    </div>
+</div>
+
+<style>
+    .custom-blur {
+        filter: blur(4px); /* 4px аналогично blur-md */
+    }
+</style>
+
+<div id="formBG" class="z-0 flex flex-grow h-screen pt-6 px-4 ">
+
+    <!-- Боковое меню -->
+    <aside class="w-1/12 p-4 rounded-xl h-min bg-white">
+        {{ template "menu" .}}
+    </aside>
+
+
+    <!-- Основной контент -->
+    <main class="flex-grow px-4 py-2 text-black rounded-xl">
+
+        <!-- Поисковая строка и кнопка -->
+        <div class="flex items-center mb-4 gap-2">
+            <input type="text" placeholder="Поиск по тратам"
+                class="w-full px-4 py-2 border rounded-md bg-gray-200 outline-none focus:ring-2 focus:ring-blue-200">
+            <button onclick="toggleModal()" id="openAddPopupButton"
+                class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700">Добавить</button>
+        </div>
+
+        <!-- Список трат -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <ul>
+                <li class="flex items-center justify-between px-4 py-2 border-b border-gray-200">
+                    <span>1 ноября</span>
+                    <div class="flex items-center">
+                        <span class="text-gray-700 mr-4">500 Р</span>
+                        <button class="text-red-500 hover:text-red-700">&times;</button>
+                    </div>
+                </li>
+                <!-- Добавить аналогичные элементы для остальных записей -->
+            </ul>
+        </div>
+
+        <!-- Блоки статистики -->
+        <div class="grid grid-cols-3 gap-4 mt-6">
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <p class="text-gray-600">Расходы за месяц :</p>
+                <p class="text-2xl font-bold">42500</p>
+                <ul class="mt-4 space-y-2 text-gray-700">
+                    <li>5 ноября - 7000</li>
+                    <li>5 ноября - 7000</li>
+                    <li>5 ноября - 7000</li>
+                    <li>5 ноября - 7000</li>
+                    <li>5 ноября - 7000</li>
+                </ul>
+            </div>
+            <!-- Добавить аналогичные блоки для остальных карточек -->
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <p class="text-gray-600">Оставшийся бюджет :</p>
+                <p class="text-2xl font-bold">42500</p>
+                <ul class="mt-4 space-y-2 text-gray-700">
+                    <li>5 ноября - 7000</li>
+                    <li>5 ноября - 7000</li>
+                    <li>5 ноября - 7000</li>
+                    <li>5 ноября - 7000</li>
+                    <li>5 ноября - 7000</li>
+                </ul>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <p class="text-gray-600">Текущие тенденции :</p>
+                <p class="text-2xl font-bold">42500</p>
+                <ul class="mt-4 space-y-2 text-gray-700">
+                    <li>5 ноября - 7000</li>
+                    <li>5 ноября - 7000</li>
+                    <li>5 ноября - 7000</li>
+                    <li>5 ноября - 7000</li>
+                    <li>5 ноября - 7000</li>
+                </ul>
+            </div>
+        </div>
+
+    </main>
+
+</div>
+
+{{end}}
