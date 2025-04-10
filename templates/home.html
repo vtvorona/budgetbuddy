@@ -1,23 +1,39 @@
 {{ define "content" }}
-
-<div class="flex flex-col h-[100vh] md:flex-row">
+<div class="flex flex-col md:flex-row h-full">
     <!-- Левый блок -->
-    <div class="h-full w-full md:w-1/2 p-8 flex flex-col bg-gray-200 justify-center">
+    <div class="w-full md:w-1/2 flex flex-col bg-red-200 items-center justify-center">
+        <img src="/static/imgs/home_background.jpg" alt="Finance Illustration" class="w-full size-full object-cover">
     </div>
+
     <!-- Правый блок -->
-    <div class="w-1/2 h-full bg-white mx-auto flex">
-        <div class="flex flex-col justify-center items-start w-4/5 h-[35%] p-8 gap-3 mx-2">
-            <h1 class="font-medium tracking-widest text-2xl">Budget Buddy</h1>
-            <p class="font-medium text-lg">Это удобное и простое в использовании веб-приложение для отслеживания
-                личных расходов и управления финансами. Оно создано, чтобы помочь вам контролировать свои финансы,
-                легко анализировать траты и планировать бюджет.</p>
-            <nav>
+    <div class="w-full md:w-1/2 flex bg-white">
+        <div class="flex flex-col items-start md:w-4/5 w-full gap-5 md:p-8 p-4 mx-2">
+            <h1 class="font-medium tracking-widest underline text-2xl">Budget Buddy</h1>
+            <p class="font-medium text-xl leading-relaxed">
+                Это удобное и простое в использовании веб-приложение для отслеживания личных расходов и управления
+                финансами. Оно создано, чтобы помочь вам контролировать свои финансы, легко анализировать траты и
+                планировать
+                бюджет.
+            </p>
+
+            <div class="gap-4 flex flex-col">
+                <h2 class="font-medium tracking-wide text-2xl">Наши преимущества:</h2>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li class="text-lg font-medium text-gray-700">Удобный интерфейс</li>
+                    <li class="text-lg font-medium text-gray-700">Детальная аналитика расходов</li>
+                    <li class="text-lg font-medium text-gray-700">Настраиваемые финансовые цели</li>
+                    <li class="text-lg font-medium text-gray-700">Полная безопасность данных</li>
+                </ul>
+            </div>
+
+            <nav class="md:w-1/2 w-full mt-4">
                 <a href="/registration"
-                    class="bg-gray-600 text-white rounded-md text-base text-start px-8 flex py-2 hover:bg-gray-700">Попробовать
+                    class="block bg-gray-700 text-white rounded-xl text-base font-medium w-full py-3 text-center hover:bg-gray-800">
+                    Попробовать бесплатно
                 </a>
             </nav>
+
         </div>
     </div>
 </div>
-
 {{ end }}

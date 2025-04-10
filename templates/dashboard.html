@@ -1,120 +1,124 @@
 {{ define "content" }}
+<div class="h-full">
+    <div id="addmodal"
+        class="hidden fixed inset-0 sm:bg-gray-900 bg-white sm:bg-opacity-50 justify-center items-start sm:items-center">
+        <div
+            class="lg:w-1/3 sm:w-3/4 w-full h-min md:p-10 p-6 lg:border-2 border-0 border-gray-700 rounded-lg relative bg-white">
+            <button onclick="closeToggleAddModal()"
+                class="absolute top-3 right-3 text-gray-500 hover:text-gray-700">&times;</button>
 
-<div id="modal" class="h-3/5 z-10 fixed w-full hidden justify-center items-center">
-    <div class="w-1/3 h-min p-10 bg-white rounded-lg shadow-md relative">
-        <button onclick="closeToggleModal()" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700">&times;</button>
+            <h2 class="text-2xl font-semibold mb-4 text-gray-800">Добавить расход</h2>
 
-        <h2 class="text-lg font-semibold mb-4">Добавить расход</h2>
+            <form action="/expense/create" method="POST">
+                <div class="mb-4">
+                    <label class="block text-lg font-medium text-gray-700" for="title">Название</label>
+                    <input type="text" id="title" name="title"
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-700"
+                        placeholder="Введите название" required>
+                </div>
 
-        <form action="/expense/add">
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700" for="title">Название</label>
-                <input type="text" id="title"
-                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Введите название">
+                <div class="mb-4">
+                    <label class="block text-lg font-medium text-gray-700" for="category">Категория</label>
+                    <select id="category" name="category"
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-700"
+                        required>
+                        <option value="">Выберите категорию</option>
+                        {{ range .User.Categories }}
+                        <option value="{{ .ID }}">{{ .Name }}</option>
+                        {{ end }}
+                    </select>
+                    <button type="button" onclick="openAddCategoryModal()"
+                        class="mt-2 text-blue-800 font-semibold hover:text-blue-900  text-sm">
+                        Добавить свою категорию
+                    </button>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-lg font-medium text-gray-700" for="price">Стоимость</label>
+                    <input type="number" id="price" name="price"
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-700"
+                        placeholder="Введите стоимость" step="0.01" required>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-lg font-medium text-gray-700" for="amount">Количество</label>
+                    <input type="number" id="quantity" name="amount"
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-700"
+                        placeholder="Введите количество" value="1" step="1" min="1" required>
+                </div>
+
+                <button type="submit"
+                    class="flex items-center justify-center bg-gray-700 text-white rounded-xl mt-4 ml-auto px-8 py-2 hover:bg-gray-800 focus:outline-none">
+                    Добавить
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="formBG" class="z-0 lg:my-10 my-6 px-4 lg:gap-6 gap-4 flex container mx-auto md:flex-row flex-col">
+        <aside class="md:w-1/5">
+            {{ template "menu" . }}
+        </aside>
+
+        <main class="py-1 md:w-4/5 w-full h-full text-black rounded-xl">
+            <div class="flex items-center mb-4 gap-2 md:flex-row flex-col">
+                <input type="text" placeholder="Поиск по тратам"
+                    class="w-full px-4 py-2 border rounded-lg text-base bg-white outline-none focus:ring-2 focus:ring-blue-300">
+                <button onclick="toggleAddModal()" id="openAddPopupButton"
+                    class="px-4 md:w-1/6 py-2 w-full bg-gray-700 text-white rounded-lg hover:bg-gray-800 focus:outline-none">
+                    Добавить
+                </button>
             </div>
 
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700" for="category">Категория</label>
-                <input type="text" id="category"
-                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Введите категорию">
-            </div>
+            <div class="bg-white rounded-lg h-full  overflow-hidden">
+                <div class="p-6">
+                    <div class="flex justify-between items-center border-b pb-4 mb-4">
+                        <h2 class="text-lg font-bold text-gray-800">Расходы</h2>
+                        <span class="text-xl font-bold text-gray-900">{{ .Expenses.TodayTotal }} &#8381</span>
+                    </div>
+                    <ul class="space-y-4">
+                        {{ range .Expenses.TodayExpenses }}
+                        <form action="/expense/delete" method="post" class="flex items-center w-full">
+                            <input type="hidden" name="ID" value="{{ .ID }}">
+                            <span class="flex-1 text-gray-700 font-medium truncate">{{ .Title }}</span>
+                            <span class="flex-1 text-gray-500 text-center">{{ .Category.Name }}</span>
+                            <span class="flex-1 text-right text-gray-800 font-bold">{{ .Total }} &#8381</span>
 
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700" for="cost">Стоимость</label>
-                <input type="number" id="cost"
-                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Введите стоимость">
-            </div>
+                            <button type="button" onclick="openEditModal({ 
+                                id: '{{ .ID }}', 
+                                            title: '{{ .Title }}', 
+                                            category: '{{ .Category | js }}', 
+                                            price: '{{ .Price }}', 
+                                            amount: '{{ .Amount }}' 
+                            })" class="icon-button ml-2 edit-button" aria-label="Редактировать">
+                                <svg class="h-4 w-4 text-gray-700 hover:text-gray-900" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M21.2799 6.40005L11.7399 15.94C10.7899 16.89 7.96987 17.33 7.33987 16.7C6.70987 16.07 7.13987 13.25 8.08987 12.3L17.6399 2.75002C17.8754 2.49308 18.1605 2.28654 18.4781 2.14284C18.7956 1.99914 19.139 1.92124 19.4875 1.9139C19.8359 1.90657 20.1823 1.96991 20.5056 2.10012C20.8289 2.23033 21.1225 2.42473 21.3686 2.67153C21.6147 2.91833 21.8083 3.21243 21.9376 3.53609C22.0669 3.85976 22.1294 4.20626 22.1211 4.55471C22.1128 4.90316 22.0339 5.24635 21.8894 5.5635C21.7448 5.88065 21.5375 6.16524 21.2799 6.40005V6.40005Z"
+                                        stroke="#000000" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                    <path
+                                        d="M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13"
+                                        stroke="#000000" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                            </button>
 
-            <button type="submit"
-                class="w-8 h-8 flex items-center justify-center bg-gray-700 text-white rounded-full mt-4 ml-auto hover:bg-gray-800 focus:outline-none">
-                ✓
-            </button>
-        </form>
+                            <!-- Кнопка Удалить -->
+                            <button type="submit" class="icon-button text-red-500 mx-2 hover:text-red-700 font-bold"
+                                aria-label="Удалить">
+                                &times;
+                            </button>
+                        </form>
+
+                        {{ end }}
+                    </ul>
+                </div>
+            </div>
+        </main>
     </div>
 </div>
+{{ template "edit-modal" . }}
 
-<style>
-    .custom-blur {
-        filter: blur(4px); /* 4px аналогично blur-md */
-    }
-</style>
-
-<div id="formBG" class="z-0 flex flex-grow h-screen pt-6 px-4 ">
-
-    <!-- Боковое меню -->
-    <aside class="w-1/12 p-4 rounded-xl h-min bg-white">
-        {{ template "menu" .}}
-    </aside>
-
-
-    <!-- Основной контент -->
-    <main class="flex-grow px-4 py-2 text-black rounded-xl">
-
-        <!-- Поисковая строка и кнопка -->
-        <div class="flex items-center mb-4 gap-2">
-            <input type="text" placeholder="Поиск по тратам"
-                class="w-full px-4 py-2 border rounded-md bg-gray-200 outline-none focus:ring-2 focus:ring-blue-200">
-            <button onclick="toggleModal()" id="openAddPopupButton"
-                class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700">Добавить</button>
-        </div>
-
-        <!-- Список трат -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-            <ul>
-                <li class="flex items-center justify-between px-4 py-2 border-b border-gray-200">
-                    <span>1 ноября</span>
-                    <div class="flex items-center">
-                        <span class="text-gray-700 mr-4">500 Р</span>
-                        <button class="text-red-500 hover:text-red-700">&times;</button>
-                    </div>
-                </li>
-                <!-- Добавить аналогичные элементы для остальных записей -->
-            </ul>
-        </div>
-
-        <!-- Блоки статистики -->
-        <div class="grid grid-cols-3 gap-4 mt-6">
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <p class="text-gray-600">Расходы за месяц :</p>
-                <p class="text-2xl font-bold">42500</p>
-                <ul class="mt-4 space-y-2 text-gray-700">
-                    <li>5 ноября - 7000</li>
-                    <li>5 ноября - 7000</li>
-                    <li>5 ноября - 7000</li>
-                    <li>5 ноября - 7000</li>
-                    <li>5 ноября - 7000</li>
-                </ul>
-            </div>
-            <!-- Добавить аналогичные блоки для остальных карточек -->
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <p class="text-gray-600">Оставшийся бюджет :</p>
-                <p class="text-2xl font-bold">42500</p>
-                <ul class="mt-4 space-y-2 text-gray-700">
-                    <li>5 ноября - 7000</li>
-                    <li>5 ноября - 7000</li>
-                    <li>5 ноября - 7000</li>
-                    <li>5 ноября - 7000</li>
-                    <li>5 ноября - 7000</li>
-                </ul>
-            </div>
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <p class="text-gray-600">Текущие тенденции :</p>
-                <p class="text-2xl font-bold">42500</p>
-                <ul class="mt-4 space-y-2 text-gray-700">
-                    <li>5 ноября - 7000</li>
-                    <li>5 ноября - 7000</li>
-                    <li>5 ноября - 7000</li>
-                    <li>5 ноября - 7000</li>
-                    <li>5 ноября - 7000</li>
-                </ul>
-            </div>
-        </div>
-
-    </main>
-
-</div>
-
-{{end}}
+{{ end }}

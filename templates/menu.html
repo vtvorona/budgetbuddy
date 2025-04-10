@@ -1,8 +1,32 @@
 {{ define "menu" }}
-<nav>
-    <ul class="space-y-4">
-      <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 bg-white rounded-md text-center text-black">Главная</a></li>
-      <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 bg-white rounded-md text-center text-black">Отчеты</a></li>
+<nav class="bg-white rounded-lg md:p-6 p-4 w-full">
+    <ul class="flex lg:flex-col flex-col gap-4">
+        <!-- Главная -->
+        <li class="w-full">
+            <a href="/" class="block py-3 px-5 rounded-lg text-center md:text-left text-white bg-gray-700 hover:bg-gray-800 transition-colors duration-200 font-semibold">
+                <span class="flex items-center gap-3">
+                    Главная
+                </span>
+            </a>
+        </li>
+
+        <!-- Отчёты -->
+        <li class="w-full">
+            <a href="/filter" class="block py-3 px-5 rounded-lg text-center md:text-left text-gray-800 bg-gray-200 hover:bg-gray-300 transition-colors duration-200 font-medium">
+                <span class="flex items-center gap-3">
+                    Фильтр
+                </span>
+            </a>
+        </li>
+
+        <!-- Настройки -->
+        <li class="w-full">
+            <a href="/user" class="block py-3 px-5 rounded-lg text-center md:text-left text-gray-800 bg-gray-200 hover:bg-gray-300 transition-colors duration-200 font-medium">
+                <span class="flex items-center gap-3">
+                    Настройки
+                </span>
+            </a>
+        </li>
     </ul>
 </nav>
 {{ end }}

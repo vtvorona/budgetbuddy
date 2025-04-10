@@ -1,32 +1,32 @@
 {{ define "content" }}
-<div class="h-screen">
-    <div class="h-3/4 flex flex-col justify-center items-center w-full">
-        <form action="/register" method="post" class="w-1/3 flex flex-col bg-white rounded-xl p-8 gap-3">
-            <h1 class="text-xl font-medium">Регистрация</h1>
-            {{ if .Error }}
-                <p class="text-red-600 font-semibold text-sm"> {{ .Error }} </p>
-            {{ end }}
+<div class="flex flex-col h-full w-full m-auto justify-center items-center">
+    <form action="/register" method="post" class="flex flex-col md:min-h h-full items-start w-full  md:w-1/2 gap-4 p-8 bg-white md:rounded-lg rounded-none">
+        <h1 class="font-semibold tracking-widest underline text-2xl text-gray-800">Регистрация</h1>
+        
+        {{ if .Error }}
+        <p class="text-red-600 font-semibold text-base">{{ .Error }}</p>
+        {{ end }}
 
-            <p class="tracking-wide text-base">Имя</p>
-            <input type="text" id="name" name="name" class="w-full h-8 px-1 formcolor rounded-md text-sm" required>
+        <label for="name" class="block text-lg font-medium text-gray-700">Имя</label>
+        <input type="text" id="name" name="name" class="w-full h-10 px-4 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-700" required>
 
-            <p class="tracking-wide text-base">Фамилия</p>
-            <input type="text" id="surname" name="surname" class="w-full h-8 px-1 formcolor rounded-md text-sm" required>
+        <label for="surname" class="block text-lg font-medium text-gray-700">Фамилия</label>
+        <input type="text" id="surname" name="surname" class="w-full h-10 px-4 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-700" required>
 
-            <p class="tracking-wide text-base">Почта</p>
-            <input type="email" id="email" name="email" class="w-full h-8 px-1 formcolor rounded-md text-sm" required>
+        <label for="email" class="block text-lg font-medium text-gray-700">Почта</label>
+        <input type="email" id="email" name="email" class="w-full h-10 px-4 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-700" required>
 
-            <p class="tracking-wide text-base">Пароль</p>
-            <input type="password" id="password" name="password" class="w-full h-8 px-1 formcolor rounded-md text-sm" required>
+        <label for="password" class="block text-lg font-medium text-gray-700">Пароль</label>
+        <input type="password" id="password" name="password" class="w-full h-10 px-4 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-700" required>
 
-            <button type="submit" class="bg-gray-600 text-white rounded-md text-lg
-            w-full flex justify-center items-center py-2 tracking-wider hover:bg-gray-700 shadow-md">Регистрация</button>
+        <button type="submit" class="bg-gray-700 text-white rounded-xl text-base font-medium px-6 py-3 hover:bg-gray-800 w-full mt-4">
+            Регистрация
+        </button>
 
-            <div class="flex flex-row text-sm">
-                <p class="mr-2">Уже есть аккаунт?</p>
-                <a href="/login" class="underline">Войти</a>
-            </div>
-        </form>
-    </div>
+        <div class="text-gray-500 hover:text-gray-800 font-medium text-base mt-4">
+            <a href="/login" class="underline">Уже есть аккаунт? Войти</a>
+        </div>
+    </form>
 </div>
+
 {{ end }}

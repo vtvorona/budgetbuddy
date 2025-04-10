@@ -3,7 +3,7 @@ package auth
 import (
 	db "budgetbuddy/db"
 	"budgetbuddy/models"
-	"budgetbuddy/server"
+	"budgetbuddy/render"
 	"net/http"
 )
 
@@ -24,8 +24,8 @@ func RegisterUserHandler(w http.ResponseWriter, r *http.Request) {
 
 		exists := db.DB.Where("email = ?", user.Email).First(&existingUser)
 		if exists.Error == nil {
-			data := PageData{Error: "Пользователь с этим email уже существует"}
-			server.RenderTemplate(w, "registration", data)
+			data := models.Data{Error: "Пользователь с этим email уже существует", IsAuth: false}
+			render.RenderTemplate(w, "registration", data)
 			return
 		}
 

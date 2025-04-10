@@ -1,7 +1,7 @@
 package db
 
 import (
-	"budgetbuddy/models" // Убедитесь, что путь к модели правильный
+	"budgetbuddy/models"
 	"log"
 
 	"gorm.io/driver/sqlite"
@@ -20,7 +20,7 @@ func InitDB() {
 	}
 
 	// Автоматическое создание таблицы
-	err = DB.AutoMigrate(&models.User{})
+	err = DB.AutoMigrate(&models.User{}, &models.Expense{}, models.Category{})
 	if err != nil {
 		log.Fatalf("Failed to migrate database: %v", err)
 	}

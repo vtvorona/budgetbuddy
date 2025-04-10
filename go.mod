@@ -3,6 +3,7 @@ module budgetbuddy
 go 1.23.1
 
 require (
+	github.com/golang-jwt/jwt v3.2.2+incompatible
 	gorm.io/driver/sqlite v1.5.6
 	gorm.io/gorm v1.25.12
 )

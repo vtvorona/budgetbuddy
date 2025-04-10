@@ -1,0 +1,51 @@
+{{ define "edit-modal" }}
+<div id="edit-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50  justify-center items-center">
+    <div class="w-full max-w-lg p-6 bg-white rounded-lg relative">
+        <button onclick="closeEditModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">&times;</button>
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Редактировать расход</h2>
+        <form id="edit-expense-form">
+            <input type="hidden" id="edit-expense-id" name="id">
+
+            <div class="mb-4">
+                <label for="edit-title" class="block text-lg font-medium text-gray-700">Название</label>
+                <input type="text" id="edit-title" name="title" 
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" 
+                       placeholder="Введите название" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="edit-category" class="block text-lg font-medium text-gray-700">Категория</label>
+                <select id="edit-category" name="category" 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" 
+                        required>
+                    <option value="">Выберите категорию</option>
+                    {{ range .User.Categories }}
+                    <option value="{{ .ID }}">{{ .Name }}</option>
+                    {{ end }}
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="edit-price" class="block text-lg font-medium text-gray-700">Стоимость</label>
+                <input type="number" id="edit-price" name="price" 
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" 
+                       placeholder="Введите стоимость" step="0.01" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="edit-amount" class="block text-lg font-medium text-gray-700">Количество</label>
+                <input type="number" id="edit-amount" name="amount" 
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700" 
+                       placeholder="Введите количество" value="1" step="1" min="1" required>
+            </div>
+
+            <button type="submit" 
+                    class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 hover:bg-gray-800 focus:outline-none">
+                Сохранить изменения
+            </button>
+        </form>
+    </div>
+</div>
+
+
+{{ end }}

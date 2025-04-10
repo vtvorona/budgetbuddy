@@ -6,17 +6,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{block "title" .}}BudgetBuddy{{end}}</title>
     <link href="/static/css/style.css" rel="stylesheet">
     <script src="/static/index.js"></script>
 </head>
 
-<body class="bg-gray-100">
-    <header class="bg-black text-white py-4 px-2">
-        <div class="w-[98%] flex flex-row items-center mx-auto">
-            <a href="/" class="text-2xl flex-grow text-gray-50 font-medium ">$BudgetBuddy</a>
-            <a href="/registration" class="rounded-md text-base px-2 py-1 tracking-wider">Регистрация</a>
+    <header class="bg-slate-900 1 text-white py-4 flex font-medium justify-center min-w-screen ">
+        <div class="w-full flex flex-row md:px-8 px-5 container items-center ">
+            <a href="/" class="text-2xl flex-grow text-white tracking-wider">$BudgetBuddy</a>
+            {{if .IsAuth}}
+
+            {{else}}
+                <a href="/registration" class="rounded-md text-xl  tracking-wider">Регистрация</a>
+            {{end}}
         </div>
     </header>
-</body>
+
 {{end}}
